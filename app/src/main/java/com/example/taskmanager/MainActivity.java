@@ -2,6 +2,7 @@ package com.example.taskmanager;
 
 import android.os.Bundle;
 
+import com.example.taskmanager.screen.assignment.AssignmentFragment;
 import com.example.taskmanager.screen.dashboard.DashboardFragment;
 import com.example.taskmanager.screen.home.HomeFragment;
 import com.example.taskmanager.screen.notifications.NotificationsFragment;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.navigation_home) {
                 showFragment(new HomeFragment());
             } else if (item.getItemId() == R.id.navigation_dashboard) {
-                showFragment(new DashboardFragment());
+                showFragment(new AssignmentFragment());
             } else if (item.getItemId() == R.id.navigation_notifications) {
                 showFragment(new NotificationsFragment());
             }

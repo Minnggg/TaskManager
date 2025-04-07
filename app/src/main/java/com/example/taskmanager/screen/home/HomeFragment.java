@@ -17,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.taskmanager.MainActivity;
 import com.example.taskmanager.R;
 import com.example.taskmanager.databinding.FragmentHomeBinding;
+import com.example.taskmanager.screen.assignment.AssignmentFragment;
 import com.example.taskmanager.screen.grade.GradeFragment;
 import com.example.taskmanager.screen.note.NoteFragment;
 import com.example.taskmanager.screen.schedule.ScheduleFragment;
@@ -69,6 +70,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity.getInstants().showFragment(new GradeFragment());
+            }
+        });
+
+        binding.btnShowScreenAssignment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.getInstants().showFragment(new AssignmentFragment());
             }
         });
     }

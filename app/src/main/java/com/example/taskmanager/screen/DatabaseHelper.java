@@ -6,8 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.taskmanager.model.Assignment;
 import com.example.taskmanager.model.Grade;
 import com.example.taskmanager.model.Note;
+import com.example.taskmanager.model.Notification;
 import com.example.taskmanager.model.Schedule;
 import com.example.taskmanager.model.Subject;
 import com.example.taskmanager.model.Todo;
@@ -99,6 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "assignment_id INTEGER," +
             "schedule_id INTEGER," +
             "remind_at TEXT," +
+            "message TEXT," +
             "is_sent BOOLEAN DEFAULT FALSE," +
             "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE," +
             "FOREIGN KEY (assignment_id) REFERENCES assignments(id) ON DELETE SET NULL," +
@@ -307,21 +310,68 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.delete("schedules", "id = ?", new String[]{String.valueOf(scheduleId)});
     }
 
-    public long addAssignment(long subjectId, String title, String description, String dueDate, String priorityLevel) {
+    public long addAssignment(Assignment assignment) {
         ContentValues values = new ContentValues();
-        values.put("subject_id", subjectId);
-        values.put("title", title);
-        values.put("description", description);
-        values.put("due_date", dueDate);
-        values.put("priority_level", priorityLevel);
+        values.put("subject_id", assignment.getSubjectId());
+        values.put("title", assignment.getTitle());
+        values.put("description", assignment.getDescription());
+        values.put("due_date", assignment.getDueDate());
+        values.put("priority_level", assignment.getPriorityLevel());
 
         return db.insert("assignments", null, values);
     }
 
-    public Cursor getAssignmentsBySubjectId(long subjectId) {
+    public List<Assignment> getAssignmentsBySubjectId(long subjectId) {
+        List<Assignment> assignments = new ArrayList<>();
+
         String query = "SELECT * FROM assignments WHERE subject_id = ?";
-        return db.rawQuery(query, new String[]{String.valueOf(subjectId)});
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(subjectId)});
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                long id = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
+                long subjectIdFromDb = cursor.getLong(cursor.getColumnIndexOrThrow("subject_id"));
+                String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+                String dueDate = cursor.getString(cursor.getColumnIndexOrThrow("due_date"));
+                String priorityLevel = cursor.getString(cursor.getColumnIndexOrThrow("priority_level"));
+                String status = cursor.getString(cursor.getColumnIndexOrThrow("status"));
+
+                Assignment assignment = new Assignment(id, subjectIdFromDb, title, description, dueDate, priorityLevel, status);
+                assignments.add(assignment);
+            }
+            cursor.close();
+        }
+
+        return assignments;
     }
+
+    public Assignment getAssignmentById(long id) {
+        Assignment assignment = null;
+
+        // Query to fetch a specific assignment by its ID
+        String query = "SELECT * FROM assignments WHERE id = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)});
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                // Extract data from the cursor
+                long subjectIdFromDb = cursor.getLong(cursor.getColumnIndexOrThrow("subject_id"));
+                String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+                String dueDate = cursor.getString(cursor.getColumnIndexOrThrow("due_date"));
+                String priorityLevel = cursor.getString(cursor.getColumnIndexOrThrow("priority_level"));
+                String status = cursor.getString(cursor.getColumnIndexOrThrow("status"));
+
+                // Create the Assignment object from the cursor data
+                assignment = new Assignment(id, subjectIdFromDb, title, description, dueDate, priorityLevel, status);
+            }
+            cursor.close();
+        }
+
+        return assignment; // Return the Assignment or null if not found
+    }
+
 
     public int updateAssignment(long assignmentId, String newTitle, String newDescription, String newDueDate, String newPriorityLevel) {
         ContentValues values = new ContentValues();
@@ -501,11 +551,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.delete("todos", "id = ?", new String[]{String.valueOf(todoId)});
     }
 
-    public long addNotification(long userId, String message, String dateTime) {
+    public long addNotification(Notification notification) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues values = new ContentValues();
-        values.put("user_id", userId);
-        values.put("message", message);
-        values.put("date_time", dateTime);
+        values.put("user_id", notification.getUserId());
+        values.put("assignment_id", notification.getAssignmentId());
+        values.put("schedule_id", notification.getScheduleId());
+        values.put("remind_at", notification.getRemindAt());
+        values.put("message", notification.getMessage());
+        values.put("is_sent", notification.isSent() ? 1 : 0);
 
         return db.insert("notifications", null, values);
     }
@@ -520,6 +575,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("message", newMessage);
 
         return db.update("notifications", values, "id = ?", new String[]{String.valueOf(notificationId)});
+    }
+
+    public int updateNotificationStatussent(long notificationId) {
+        ContentValues values = new ContentValues();
+        values.put("is_sent ", 1);
+
+        return db.update("notifications", values, "assignment_id = ?", new String[]{String.valueOf(notificationId)});
     }
 
     public int deleteNotification(long notificationId) {

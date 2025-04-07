@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:elevation="2dp"
+    android:layout_margin="8dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:text="Tiêu đề bài tập"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:text="Mô tả bài tập"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#444"/>
+
+    <TextView
+        android:id="@+id/tvDueDate"
+        android:text="Hạn nộp: yyyy-MM-dd HH:mm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#666"
+        android:textSize="13sp"/>
+đ
+    <TextView
+        android:id="@+id/tvPriority"
+        android:text="Mức độ ưu tiên: Cao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#AA0000"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:text="Trạng thái:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvStatus"/>
+
+</LinearLayout>

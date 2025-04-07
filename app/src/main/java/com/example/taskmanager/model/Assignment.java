@@ -20,6 +20,16 @@ public class Assignment {
         this.status = status;
     }
 
+    public Assignment(long subjectId, String title, String description, String dueDate,
+                      String priorityLevel, String status) {
+        this.subjectId = subjectId;
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priorityLevel = priorityLevel;
+        this.status = status;
+    }
+
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
     public long getSubjectId() { return subjectId; }
