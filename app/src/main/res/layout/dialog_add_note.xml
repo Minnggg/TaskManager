@@ -11,6 +11,11 @@
         android:layout_height="wrap_content" />
 
     <EditText
+        android:textColorHint="#923535"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/bg_edittext"
+
         android:id="@+id/edtNoteContent"
         android:layout_width="match_parent"
         android:layout_height="120dp"

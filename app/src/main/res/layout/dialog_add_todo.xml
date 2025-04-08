@@ -6,6 +6,11 @@
     android:layout_height="wrap_content">
 
     <EditText
+        android:textColorHint="#923535"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/bg_edittext"
+
         android:id="@+id/etTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,6 +18,11 @@
         android:inputType="text"/>
 
     <EditText
+        android:textColorHint="#923535"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/bg_edittext"
+
         android:id="@+id/etDueDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

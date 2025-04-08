@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:weightSum="10"
     android:orientation="vertical"
-    android:background="#fff"
+    android:background="#FAD1D1"
     android:layout_marginBottom="50dp"
     tools:context=".screen.subject.SubjectFragment">
 
@@ -27,6 +27,8 @@
         android:layout_height="0dp"
         android:layout_weight="1">
         <Button
+            android:textColor="@color/white"
+            android:background="@drawable/bg_red_button"
             android:id="@+id/btnAddSubject"
             android:layout_margin="8dp"
             android:text="Thêm"

@@ -10,24 +10,40 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:textColorHint="#923535"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_edittext"
             android:id="@+id/edtTitle"
             android:hint="Tiêu đề"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:textColorHint="#923535"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_edittext"
             android:id="@+id/edtDescription"
             android:hint="Mô tả"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:textColorHint="#923535"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_edittext"
             android:id="@+id/edtDueDate"
             android:hint="Hạn nộp (yyyy-MM-dd HH:mm)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:textColorHint="#923535"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_edittext"
             android:id="@+id/edtRemindAt"
             android:hint="Nhắc lúc (yyyy-MM-dd HH:mm)"
             android:layout_width="match_parent"
@@ -44,6 +60,9 @@
             android:layout_height="wrap_content"/>
 
         <Button
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_red_button"
             android:id="@+id/btnSave"
             android:text="Lưu"
             android:layout_width="match_parent"

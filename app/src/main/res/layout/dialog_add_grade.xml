@@ -69,12 +69,16 @@
             android:layout_marginTop="16dp">
 
             <Button
+                android:textColor="@color/white"
+                android:background="@drawable/bg_red_button"
                 android:id="@+id/btnCancel"
                 android:text="Hủy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <Button
+                android:textColor="@color/white"
+                android:background="@drawable/bg_red_button"
                 android:id="@+id/btnAdd"
                 android:text="Thêm"
                 android:layout_width="wrap_content"

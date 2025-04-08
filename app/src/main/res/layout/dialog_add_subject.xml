@@ -6,12 +6,20 @@
     android:padding="16dp">
 
     <EditText
+        android:textColorHint="#923535"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/bg_edittext"
         android:id="@+id/editSubjectName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tên môn học"/>
 
     <EditText
+        android:textColorHint="#923535"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/bg_edittext"
         android:id="@+id/editSubjectCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

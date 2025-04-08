@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fff"
+    android:background="#FAD1D1"
     android:padding="16dp">
 
     <!-- Header: Month and Navigation Arrows -->
@@ -52,6 +52,10 @@
             android:textColor="#666"
             android:layout_marginTop="12dp" />
         <Button
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_red_button"
             android:id="@+id/addSchedules"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

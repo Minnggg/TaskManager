@@ -1,101 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".screen.home.HomeFragment"
     android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="#FAD1D1"
+    >
+    <LinearLayout
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/btnShowScreenSubject"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/icon_subject"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Subject"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:elevation="4dp"
+                />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btnShowScreenSubject"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Quản lý môn học"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@android:color/white"
-        android:padding="12dp"
-        android:elevation="4dp"
-        />
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/btnShowScreenSchedule"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/icon_schedule"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Schedule"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:elevation="4dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/btnShowScreenNote"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/icon_note"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notes"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:elevation="4dp"
+                />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btnShowScreenSchedule"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Thời khoa biểu"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/btnShowScreenSubject"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        
-        android:textColor="@android:color/white"
-        android:padding="12dp"
-        android:elevation="4dp"/>
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/btnShowScreenTodo"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/icon_todo"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To do"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:elevation="4dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnShowScreenNote"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Ghi chú"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/btnShowScreenSchedule"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        
-        android:textColor="@android:color/white"
-        android:padding="12dp"
-        android:elevation="4dp"/>
+    <LinearLayout
+        android:layout_weight="2"
 
-    <Button
-        android:id="@+id/btnShowScreenTodo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Todo"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/btnShowScreenNote"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        
-        android:textColor="@android:color/white"
-        android:padding="12dp"
-        android:elevation="4dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="center"
 
-    <Button
-        android:id="@+id/btnShowScreenGrade"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Grades"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/btnShowScreenTodo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        
-        android:textColor="@android:color/white"
-        android:padding="12dp"
-        android:elevation="4dp"/>
+            android:layout_weight="1"
 
-    <Button
-        android:id="@+id/btnShowScreenAssignment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Bài tập"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/btnShowScreenGrade"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        
-        android:textColor="@android:color/white"
-        android:padding="12dp"
-        android:elevation="4dp"/>
+            android:id="@+id/btnShowScreenGrade"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/icon_grades"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Grades"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:elevation="4dp"
+                />
+        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:gravity="center"
+
+            android:layout_weight="1"
+
+            android:id="@+id/btnShowScreenAssignment"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/icon_assignment"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Assignment"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:elevation="4dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
