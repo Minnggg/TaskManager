@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -29,7 +28,6 @@ import com.example.taskmanager.screen.DatabaseHelper;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -151,7 +149,7 @@ public class ScheduleFragment extends Fragment implements ScheduleAdapter.onLong
             String repeatType = "WEEKLY";
 
             Schedule newSchedule = new Schedule(
-                    Long.parseLong(listSubject.get(spinnerSubject.getSelectedItemPosition()).getCode()),
+                    listSubject.get(spinnerSubject.getSelectedItemPosition()).getCode(),
                     title,
                     description,
                     dayOfWeek,
@@ -302,7 +300,7 @@ public class ScheduleFragment extends Fragment implements ScheduleAdapter.onLong
 
         // Tìm vị trí subject hiện tại
         for (int i = 0; i < listSubject.size(); i++) {
-            if (Long.parseLong(listSubject.get(i).getCode()) == schedule.getSubjectId()) {
+            if (listSubject.get(i).getCode().equals(schedule.getSubjectId())) {
                 spinnerSubject.setSelection(i);
                 break;
             }
@@ -324,7 +322,7 @@ public class ScheduleFragment extends Fragment implements ScheduleAdapter.onLong
             // Cập nhật lịch
             Schedule updatedSchedule = new Schedule(
                     schedule.getId(),
-                    Long.parseLong(listSubject.get(spinnerSubject.getSelectedItemPosition()).getCode()),
+                    listSubject.get(spinnerSubject.getSelectedItemPosition()).getCode(),
                     title,
                     description,
                     dayOfWeek,

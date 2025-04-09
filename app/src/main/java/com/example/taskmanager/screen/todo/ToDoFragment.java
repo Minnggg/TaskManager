@@ -14,17 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.taskmanager.PublicConstants;
 import com.example.taskmanager.R;
 import com.example.taskmanager.databinding.FragmentToDoBinding;
-import com.example.taskmanager.model.Note;
 import com.example.taskmanager.model.Todo;
 import com.example.taskmanager.screen.DatabaseHelper;
-
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -82,11 +78,6 @@ public class ToDoFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_todo, null);
         EditText etTitle = view.findViewById(R.id.etTitle);
         EditText etDueDate = view.findViewById(R.id.etDueDate);
-        Spinner spinnerNote = view.findViewById(R.id.spinnerNote);
-
-        List<Note> noteList = db.getNotesByUserId(PublicConstants.user.getId());
-        NoteAdapterSpinner adapter = new NoteAdapterSpinner(getContext(), noteList);
-        spinnerNote.setAdapter(adapter);
 
         // Tạo dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -95,11 +86,8 @@ public class ToDoFragment extends Fragment {
                 .setPositiveButton("Lưu", (dialog, which) -> {
                     String title = etTitle.getText().toString();
                     String dueDate = etDueDate.getText().toString();
-                    int selectedNotePosition = spinnerNote.getSelectedItemPosition();
-                    long noteId = noteList.get(selectedNotePosition).getId();
-
                     if (!title.isEmpty() && !dueDate.isEmpty()) {
-                        Todo newTodo = new Todo(PublicConstants.user.getId(), title, false, dueDate, noteId);
+                        Todo newTodo = new Todo(PublicConstants.user.getId(), title, false, dueDate, 0);
                         db.addTodo(newTodo);
                         listTodo.add(newTodo);
                         todoAdapter.notifyDataSetChanged();
@@ -137,22 +125,9 @@ public class ToDoFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_todo, null);
         EditText etTitle = view.findViewById(R.id.etTitle);
         EditText etDueDate = view.findViewById(R.id.etDueDate);
-        Spinner spinnerNote = view.findViewById(R.id.spinnerNote);
 
         etTitle.setText(todo.getTitle());
         etDueDate.setText(todo.getDueDate());
-
-        List<Note> noteList = db.getNotesByUserId(PublicConstants.user.getId());
-        NoteAdapterSpinner adapter = new NoteAdapterSpinner(getContext(), noteList);
-        spinnerNote.setAdapter(adapter);
-
-        // Gán note hiện tại được chọn
-        for (int i = 0; i < noteList.size(); i++) {
-            if (noteList.get(i).getId() == todo.getNoteId()) {
-                spinnerNote.setSelection(i);
-                break;
-            }
-        }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Chỉnh sửa To-Do")
@@ -160,14 +135,10 @@ public class ToDoFragment extends Fragment {
                 .setPositiveButton("Lưu", (dialog, which) -> {
                     String title = etTitle.getText().toString();
                     String dueDate = etDueDate.getText().toString();
-                    int selectedNotePosition = spinnerNote.getSelectedItemPosition();
-                    long noteId = noteList.get(selectedNotePosition).getId();
 
                     if (!title.isEmpty() && !dueDate.isEmpty()) {
                         todo.setTitle(title);
                         todo.setDueDate(dueDate);
-                        todo.setNoteId(noteId);
-
                         db.updateTodo(todo);
                         todoAdapter.notifyDataSetChanged();
                     } else {

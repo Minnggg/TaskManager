@@ -34,7 +34,7 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.GradeViewHol
     @Override
     public void onBindViewHolder(GradeViewHolder holder, int position) {
         Subject subject = subjectList.get(position);
-        List<Grade> gradeList = new DatabaseHelper(context).getGradeListBySubjectId(Long.parseLong(subject.getCode()));
+        List<Grade> gradeList = new DatabaseHelper(context).getGradeListBySubjectId(subject.getCode());
 
         holder.tvSubjectName.setText(subject.getName());
 
@@ -42,7 +42,7 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.GradeViewHol
 
         for (Grade grade1 : gradeList) {
             TextView scoreTextView = new TextView(holder.itemView.getContext());
-            scoreTextView.setText(String.format("%05.2f(%s)", grade1.getScore(),grade1.getGradeType()));
+            scoreTextView.setText(String.format("%05.2f", grade1.getScore()));
             scoreTextView.setPadding(10, 0, 10, 0); // Thêm padding nếu cần
             holder.scoreColumns.addView(scoreTextView);
         }

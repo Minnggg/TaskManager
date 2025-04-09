@@ -42,19 +42,6 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/edtMaxScore"
-            android:hint="Điểm tối đa"
-            android:inputType="numberDecimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/edtGradeType"
-            android:hint="Loại điểm (Nhập hệ số điểm)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <EditText
             android:id="@+id/edtDate"
             android:hint="Ngày (yyyy-MM-dd)"
             android:inputType="date"

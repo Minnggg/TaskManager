@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_SCHEDULES_TABLE = "CREATE TABLE schedules (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "subject_id INTEGER," +
+            "subject_id TEXT," +
             "title TEXT," +
             "description TEXT," +
             "day_of_week INTEGER CHECK (day_of_week BETWEEN 0 AND 6)," +
@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_ASSIGNMENTS_TABLE = "CREATE TABLE assignments (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "subject_id INTEGER," +
+            "subject_id TEXT," +
             "title TEXT NOT NULL," +
             "description TEXT," +
             "due_date TEXT," +
@@ -65,7 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_GRADES_TABLE = "CREATE TABLE grades (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "subject_id INTEGER," +
+            "subject_id TEXT," +
             "title TEXT," +
             "score REAL," +
             "max_score REAL," +
@@ -77,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_NOTES_TABLE = "CREATE TABLE notes (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "user_id INTEGER," +
-            "subject_id INTEGER," +
+            "subject_id TEXT," +
             "content TEXT," +
             "created_at TEXT DEFAULT CURRENT_TIMESTAMP," +
             "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE," +
@@ -265,12 +265,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         for (Subject subject : subjects) {
             String query = "SELECT * FROM schedules WHERE subject_id = ?";
-            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(subject.getCode())});
+            Cursor cursor = db.rawQuery(query, new String[]{subject.getCode()});
 
             if (cursor != null) {
                 while (cursor.moveToNext()) {
                     int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-                    int subjectId = cursor.getInt(cursor.getColumnIndexOrThrow("subject_id"));
+                    String subjectId = cursor.getString(cursor.getColumnIndexOrThrow("subject_id"));
                     String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
                     String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
                     int dayOfWeek = cursor.getInt(cursor.getColumnIndexOrThrow("day_of_week"));
@@ -321,7 +321,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert("assignments", null, values);
     }
 
-    public List<Assignment> getAssignmentsBySubjectId(long subjectId) {
+    public List<Assignment> getAssignmentsBySubjectId(String subjectId) {
         List<Assignment> assignments = new ArrayList<>();
 
         String query = "SELECT * FROM assignments WHERE subject_id = ?";
@@ -330,7 +330,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 long id = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
-                long subjectIdFromDb = cursor.getLong(cursor.getColumnIndexOrThrow("subject_id"));
+                String subjectIdFromDb = cursor.getString(cursor.getColumnIndexOrThrow("subject_id"));
                 String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
                 String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
                 String dueDate = cursor.getString(cursor.getColumnIndexOrThrow("due_date"));
@@ -356,7 +356,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 // Extract data from the cursor
-                long subjectIdFromDb = cursor.getLong(cursor.getColumnIndexOrThrow("subject_id"));
+                String subjectIdFromDb = cursor.getString(cursor.getColumnIndexOrThrow("subject_id"));
                 String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
                 String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
                 String dueDate = cursor.getString(cursor.getColumnIndexOrThrow("due_date"));
@@ -399,7 +399,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert("grades", null, values);
     }
 
-    public List<Grade> getGradeListBySubjectId(long subjectId) {
+    public List<Grade> getGradeListBySubjectId(String subjectId) {
         List<Grade> grades = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -409,7 +409,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 long id = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
-                long subId = cursor.getLong(cursor.getColumnIndexOrThrow("subject_id"));
+                String subId = cursor.getString(cursor.getColumnIndexOrThrow("subject_id"));
                 String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
                 double score = cursor.getDouble(cursor.getColumnIndexOrThrow("score"));
                 double maxScore = cursor.getDouble(cursor.getColumnIndexOrThrow("max_score"));
@@ -458,7 +458,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 long id = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
-                long subjectId = cursor.getLong(cursor.getColumnIndexOrThrow("subject_id"));
+                String subjectId = cursor.getString(cursor.getColumnIndexOrThrow("subject_id"));
                 String content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
                 String createdAt = cursor.getString(cursor.getColumnIndexOrThrow("created_at"));
 
@@ -478,7 +478,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null && cursor.moveToFirst()) {
             long id = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
             long userId = cursor.getLong(cursor.getColumnIndexOrThrow("user_id"));
-            long subjectId = cursor.getLong(cursor.getColumnIndexOrThrow("subject_id"));
+            String subjectId = cursor.getString(cursor.getColumnIndexOrThrow("subject_id"));
             String content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
             String createdAt = cursor.getString(cursor.getColumnIndexOrThrow("created_at"));
 

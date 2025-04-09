@@ -29,9 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         db = new DatabaseHelper(getApplicationContext());
 
-        binding.edEmailSignIn.setText("minh@gmail.com");
-        binding.edPasswordSignIn.setText("1");
-
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

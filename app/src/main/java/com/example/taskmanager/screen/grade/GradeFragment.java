@@ -127,7 +127,7 @@ public class GradeFragment extends Fragment {
         double sumCount = 0;
         if(subjectList.isEmpty()) return;
         for (Subject subject : subjectList) {
-            double point = calculateAverage(db.getGradeListBySubjectId(Long.parseLong(subject.getCode())));
+            double point = calculateAverage(db.getGradeListBySubjectId(subject.getCode()));
             if(point > 0) {
                 listNameSubject.add(subject.getName());
                 listPoint.add(Float.parseFloat(point+""));
@@ -164,8 +164,6 @@ public class GradeFragment extends Fragment {
         Spinner spinnerSubjects = view.findViewById(R.id.spinnerSubjects);
         EditText edtTitle = view.findViewById(R.id.edtTitle);
         EditText edtScore = view.findViewById(R.id.edtScore);
-        EditText edtMaxScore = view.findViewById(R.id.edtMaxScore);
-        EditText edtGradeType = view.findViewById(R.id.edtGradeType);
         EditText edtDate = view.findViewById(R.id.edtDate);
         Button btnCancel = view.findViewById(R.id.btnCancel);
         Button btnAdd = view.findViewById(R.id.btnAdd);
@@ -191,22 +189,19 @@ public class GradeFragment extends Fragment {
                 return;
             }
 
-            long subjectId = Long.parseLong(subjectList.get(selectedPosition).getCode());
+            String subjectId = subjectList.get(selectedPosition).getCode();
             String title = edtTitle.getText().toString().trim();
             String scoreStr = edtScore.getText().toString().trim();
-            String maxScoreStr = edtMaxScore.getText().toString().trim();
-            String gradeType = edtGradeType.getText().toString().trim();
             String date = edtDate.getText().toString().trim();
 
-            if (title.isEmpty() || scoreStr.isEmpty() || maxScoreStr.isEmpty() || gradeType.isEmpty() || date.isEmpty()) {
+            if (title.isEmpty() || scoreStr.isEmpty() || date.isEmpty()) {
                 Toast.makeText(getContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             double score = Double.parseDouble(scoreStr);
-            double maxScore = Double.parseDouble(maxScoreStr);
 
-            Grade grade = new Grade(0, subjectId, title, score, maxScore, gradeType, date);
+            Grade grade = new Grade(0, subjectId, title, score, 10, "1", date);
             db.addGrade(grade);
 
             Toast.makeText(getContext(), "Đã thêm điểm", Toast.LENGTH_SHORT).show();

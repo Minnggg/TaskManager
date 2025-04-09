@@ -2,14 +2,14 @@ package com.example.taskmanager.model;
 
 public class Assignment {
     private long id;
-    private long subjectId;
+    private String subjectId;
     private String title;
     private String description;
     private String dueDate;
     private String priorityLevel;
     private String status;
 
-    public Assignment(long id, long subjectId, String title, String description, String dueDate,
+    public Assignment(long id, String subjectId, String title, String description, String dueDate,
                       String priorityLevel, String status) {
         this.id = id;
         this.subjectId = subjectId;
@@ -20,7 +20,7 @@ public class Assignment {
         this.status = status;
     }
 
-    public Assignment(long subjectId, String title, String description, String dueDate,
+    public Assignment(String subjectId, String title, String description, String dueDate,
                       String priorityLevel, String status) {
         this.subjectId = subjectId;
         this.title = title;
@@ -32,8 +32,8 @@ public class Assignment {
 
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
-    public long getSubjectId() { return subjectId; }
-    public void setSubjectId(long subjectId) { this.subjectId = subjectId; }
+    public String getSubjectId() { return subjectId; }
+    public void setSubjectId(String subjectId) { this.subjectId = subjectId; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     public String getDescription() { return description; }

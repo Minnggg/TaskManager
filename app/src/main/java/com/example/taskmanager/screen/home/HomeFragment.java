@@ -4,18 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
-
 import com.example.taskmanager.MainActivity;
-import com.example.taskmanager.R;
 import com.example.taskmanager.databinding.FragmentHomeBinding;
 import com.example.taskmanager.screen.assignment.AssignmentFragment;
 import com.example.taskmanager.screen.grade.GradeFragment;

@@ -2,7 +2,7 @@ package com.example.taskmanager.model;
 
 public class Schedule {
     private long id;
-    private long subjectId;
+    private String subjectId;
     private String title;
     private String description;
     private int dayOfWeek;
@@ -11,7 +11,7 @@ public class Schedule {
     private String location;
     private String repeatType;
 
-    public Schedule(long id, long subjectId, String title, String description, int dayOfWeek,
+    public Schedule(long id, String subjectId, String title, String description, int dayOfWeek,
                     String startTime, String endTime, String location, String repeatType) {
         this.id = id;
         this.subjectId = subjectId;
@@ -24,7 +24,7 @@ public class Schedule {
         this.repeatType = repeatType;
     }
 
-    public Schedule(long subjectId, String title, String description, int dayOfWeek,
+    public Schedule(String subjectId, String title, String description, int dayOfWeek,
                     String startTime, String endTime, String location, String repeatType) {
         this.subjectId = subjectId;
         this.title = title;
@@ -38,8 +38,8 @@ public class Schedule {
 
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
-    public long getSubjectId() { return subjectId; }
-    public void setSubjectId(long subjectId) { this.subjectId = subjectId; }
+    public String getSubjectId() { return subjectId; }
+    public void setSubjectId(String subjectId) { this.subjectId = subjectId; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     public String getDescription() { return description; }

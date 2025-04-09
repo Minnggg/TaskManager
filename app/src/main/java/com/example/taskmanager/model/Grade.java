@@ -2,14 +2,14 @@ package com.example.taskmanager.model;
 
 public class Grade {
     private long id;
-    private long subjectId;
+    private String subjectId;
     private String title;
     private double score;
     private double maxScore;
     private String gradeType;
     private String date;
 
-    public Grade(long id, long subjectId, String title, double score, double maxScore,
+    public Grade(long id, String subjectId, String title, double score, double maxScore,
                  String gradeType, String date) {
         this.id = id;
         this.subjectId = subjectId;
@@ -22,8 +22,8 @@ public class Grade {
 
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
-    public long getSubjectId() { return subjectId; }
-    public void setSubjectId(long subjectId) { this.subjectId = subjectId; }
+    public String getSubjectId() { return subjectId; }
+    public void setSubjectId(String subjectId) { this.subjectId = subjectId; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     public double getScore() { return score; }

@@ -1,30 +1,23 @@
 package com.example.taskmanager;
 
 import android.os.Bundle;
-
-import com.example.taskmanager.screen.assignment.AssignmentFragment;
-import com.example.taskmanager.screen.dashboard.DashboardFragment;
-import com.example.taskmanager.screen.home.HomeFragment;
-import com.example.taskmanager.screen.notifications.NotificationsFragment;
-import com.example.taskmanager.screen.schedule.ScheduleFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.taskmanager.databinding.ActivityMainBinding;
+import com.example.taskmanager.screen.assignment.AssignmentFragment;
+import com.example.taskmanager.screen.home.HomeFragment;
+import com.example.taskmanager.screen.notifications.NotificationsFragment;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private static MainActivity instance;
+
     public static MainActivity getInstants() {
         return instance;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        // Load fragment mặc định
+        showFragment(new HomeFragment());
 
         binding.navView.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.navigation_home) {
@@ -49,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.nav_host_fragment_activity_main, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit(); // Không addToBackStack nếu không cần quay lại
     }
 }

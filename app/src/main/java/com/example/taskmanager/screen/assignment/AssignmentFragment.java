@@ -87,7 +87,7 @@ public class AssignmentFragment extends Fragment {
         }
 
         for (Subject subject : listSubject) {
-            List<Assignment> temp = db.getAssignmentsBySubjectId(Long.parseLong(subject.getCode()));
+            List<Assignment> temp = db.getAssignmentsBySubjectId(subject.getCode());
             if(temp.isEmpty()) {
                 continue;
             }
@@ -173,7 +173,7 @@ public class AssignmentFragment extends Fragment {
 
                 // Create a new Assignment object
                 Assignment assignment = new Assignment(
-                        Long.parseLong(listSubject.get(spnSubject.getSelectedItemPosition()).getCode()),
+                        listSubject.get(spnSubject.getSelectedItemPosition()).getCode(),
                         edtTitle.getText().toString(),
                         edtDescription.getText().toString(),
                         dueDateStr,

@@ -11,16 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-
 import com.example.taskmanager.PublicConstants;
 import com.example.taskmanager.R;
 import com.example.taskmanager.databinding.FragmentSubjectBinding;
 import com.example.taskmanager.model.Subject;
 import com.example.taskmanager.screen.DatabaseHelper;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class SubjectFragment extends Fragment implements SubjectAdapter.onClickSubjectInterfaces {

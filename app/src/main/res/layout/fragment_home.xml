@@ -112,14 +112,11 @@
 
     <LinearLayout
         android:layout_weight="2"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
             android:gravity="center"
-
             android:layout_weight="1"
-
             android:id="@+id/btnShowScreenGrade"
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -142,9 +139,7 @@
 
         <LinearLayout
             android:gravity="center"
-
             android:layout_weight="1"
-
             android:id="@+id/btnShowScreenAssignment"
             android:orientation="vertical"
             android:layout_width="wrap_content"
